@@ -2,6 +2,8 @@ import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/gallery/add_car.dart';
 import 'package:cars_app/models/cars_model.dart';
 import 'package:cars_app/models/gallery_model.dart';
+import 'package:cars_app/user/buy_car.dart';
+import 'package:cars_app/user/replace_car.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +39,7 @@ class _UserCarsState extends State<UserCars> {
   void fetchCars() async {
     app = await Firebase.initializeApp();
     database = FirebaseDatabase(app: app);
-    base = database.reference().child("cars").child('${widget.galleryName}');
+    base = database.reference().child("cars").child(widget.galleryName);
     base.onChildAdded.listen((event) {
       print(event.snapshot.value);
       Cars p = Cars.fromJson(event.snapshot.value);
@@ -93,13 +95,13 @@ class _UserCarsState extends State<UserCars> {
                                       Padding(
                                         padding: EdgeInsets.only(right: 15.w),
                                         child: Image.network(
-                                            '${carsList[index].imageUrl.toString()}'),
+                                            carsList[index].imageUrl.toString()),
                                       ),
                                       SizedBox(
                                         height: 10.h,
                                       ),
                                       Text(
-                                        '${carsList[index].name.toString()}',
+                                        carsList[index].name.toString(),
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Marhey',
@@ -139,7 +141,17 @@ class _UserCarsState extends State<UserCars> {
                                           style: ElevatedButton.styleFrom(
                                             primary: Colors.blue,
                                           ),
-                                          onPressed: () async {},
+                                          onPressed: () async {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return BuyCar(
+                                                galleryName:
+                                                    widget.galleryName,
+                                                carName: carsList[index].name.toString(),
+                                              );
+                                            }));
+                                          },
                                           child: Text("شراء",
                                               style: TextStyle(
                                                   color: Colors.white)),
@@ -155,7 +167,17 @@ class _UserCarsState extends State<UserCars> {
                                           style: ElevatedButton.styleFrom(
                                             primary: Colors.blue,
                                           ),
-                                          onPressed: () async {},
+                                          onPressed: () async {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return ReplaceCar(
+                                                galleryName:
+                                                    widget.galleryName,
+                                                carName: carsList[index].name.toString(),
+                                              );
+                                            }));
+                                          },
                                           child: Text("استبدال",
                                               style: TextStyle(
                                                   color: Colors.white)),

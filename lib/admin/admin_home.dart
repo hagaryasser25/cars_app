@@ -1,6 +1,10 @@
 import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/admin/admin_gallery.dart';
+import 'package:cars_app/admin/buying_list.dart';
+import 'package:cars_app/admin/replacing_list.dart';
+import 'package:cars_app/admin/selling_list.dart';
 import 'package:cars_app/auth/login_page.dart';
+import 'package:cars_app/user/buy_car.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -49,20 +53,24 @@ class _AdminHomeState extends State<AdminHome> {
                     children: [
                       InkWell(
                           onTap: () {
-                            ;
+                            Navigator.pushNamed(context, BuyingList.routeName);
                           },
                           child: card('طلبات الشراء', Icons.wallet)),
                       SizedBox(
                         width: 13.w,
                       ),
                       InkWell(
-                          onTap: () {}, child: card("طلبات البيع", Icons.sell)),
+                          onTap: () {
+                            Navigator.pushNamed(context, SellingList.routeName);
+                          },
+                          child: card("طلبات البيع", Icons.sell)),
                       SizedBox(
                         width: 13.w,
                       ),
                       InkWell(
                           onTap: () {
-                            // Navigator.pushNamed(context, UserReport.routeName);
+                            Navigator.pushNamed(
+                                context, ReplacingList.routeName);
                           },
                           child: card("طلبات البدل", Icons.car_rental)),
                     ],
@@ -75,10 +83,11 @@ class _AdminHomeState extends State<AdminHome> {
                     children: [
                       InkWell(
                           onTap: () {
-                             Navigator.pushNamed(context, AdminGallery.routeName);
+                            Navigator.pushNamed(
+                                context, AdminGallery.routeName);
                           },
                           child: card("أضافة معرض", Icons.add)),
-                          SizedBox(
+                      SizedBox(
                         width: 13.w,
                       ),
                       InkWell(
@@ -88,7 +97,8 @@ class _AdminHomeState extends State<AdminHome> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text('تأكيد'),
-                                    content: Text('هل انت متأكد من تسجيل الخروج'),
+                                    content:
+                                        Text('هل انت متأكد من تسجيل الخروج'),
                                     actions: [
                                       TextButton(
                                         onPressed: () {

@@ -1,6 +1,9 @@
 import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/admin/admin_gallery.dart';
 import 'package:cars_app/admin/admin_home.dart';
+import 'package:cars_app/admin/buying_list.dart';
+import 'package:cars_app/admin/replacing_list.dart';
+import 'package:cars_app/admin/selling_list.dart';
 import 'package:cars_app/auth/admin_login.dart';
 import 'package:cars_app/auth/gallery_login.dart';
 import 'package:cars_app/auth/login_page.dart';
@@ -8,6 +11,7 @@ import 'package:cars_app/auth/signup_page.dart';
 import 'package:cars_app/gallery/add_car.dart';
 import 'package:cars_app/gallery/gallery_cars.dart';
 import 'package:cars_app/gallery/gallery_home.dart';
+import 'package:cars_app/user/sell_car.dart';
 import 'package:cars_app/user/user_gallery.dart';
 import 'package:cars_app/user/user_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,7 +73,11 @@ class MyApp extends StatelessWidget {
           GalleryLogin.routeName: (ctx) => GalleryLogin(),
           GalleryHome.routeName: (ctx) => GalleryHome(),
           AddCar.routeName: (ctx) => AddCar(),
+          SellCar.routeName: (ctx) => SellCar(),
           UserHome.routeName: (ctx) => UserHome(),
+          BuyingList.routeName: (ctx) => BuyingList(),
+          ReplacingList.routeName: (ctx) => ReplacingList(),
+          SellingList.routeName: (ctx) => SellingList(),
         });
   }
 }

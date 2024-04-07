@@ -3,6 +3,7 @@ import 'package:cars_app/admin/admin_gallery.dart';
 import 'package:cars_app/auth/login_page.dart';
 import 'package:cars_app/gallery/gallery_cars.dart';
 import 'package:cars_app/models/galleryu_model.dart';
+import 'package:cars_app/user/sell_car.dart';
 import 'package:cars_app/user/user_gallery.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -60,7 +61,9 @@ class _UserHomeState extends State<UserHome> {
                       SizedBox(
                         width: 13.w,
                       ),
-                      InkWell(onTap: () {}, child: card("طلب بيع", Icons.sell)),
+                      InkWell(onTap: () {
+                        Navigator.pushNamed(context, SellCar.routeName);
+                      }, child: card("طلب بيع", Icons.sell)),
                       SizedBox(
                         width: 13.w,
                       ),
