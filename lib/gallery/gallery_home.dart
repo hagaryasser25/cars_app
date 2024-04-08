@@ -1,7 +1,9 @@
 import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/admin/admin_gallery.dart';
 import 'package:cars_app/auth/login_page.dart';
+import 'package:cars_app/gallery/buying_gallery.dart';
 import 'package:cars_app/gallery/gallery_cars.dart';
+import 'package:cars_app/gallery/replacing_gallery.dart';
 import 'package:cars_app/models/galleryu_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -62,12 +64,44 @@ class _GalleryHomeState extends State<GalleryHome> {
                 'الصفحة الرئيسية',
                 style: TextStyle(color: Colors.white),
               )),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.logout),
+                  tooltip: 'Open shopping cart',
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('تأكيد'),
+                            content: Text('هل انت متأكد من تسجيل الخروج'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  FirebaseAuth.instance.signOut();
+                                  Navigator.pushNamed(
+                                      context, UserLogin.routeName);
+                                },
+                                child: Text('نعم'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('لا'),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+                ),
+              ],
             ),
             body: Column(
               children: [
                 Center(
                     child:
-                        Image.asset("assets/images/rent.png", height: 400.h)),
+                        Image.asset("assets/images/hh.png", height: 400.h)),
                 Text(
                   "الخدمات",
                   style: TextStyle(
@@ -78,51 +112,43 @@ class _GalleryHomeState extends State<GalleryHome> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return GalleryCars(
-                                galleryName:
-                                    '${currentUser.name}',
+                                galleryName: '${currentUser.name}',
                               );
                             }));
                           },
-                          child: card("أضافة سيارة", Icons.add)),
+                          child: card("اضافة سيارة", )),
                       SizedBox(
                         width: 13.w,
                       ),
                       InkWell(
                           onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text('تأكيد'),
-                                    content:
-                                        Text('هل انت متأكد من تسجيل الخروج'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          FirebaseAuth.instance.signOut();
-                                          Navigator.pushNamed(
-                                              context, UserLogin.routeName);
-                                        },
-                                        child: Text('نعم'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text('لا'),
-                                      ),
-                                    ],
-                                  );
-                                });
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return BuyingGallery(
+                                name: '${currentUser.name}',
+                              );
+                            }));
                           },
-                          child: card("تسجيل الخروج", Icons.logout)),
+                          child: card("طلبات الشراء", )),
+                      SizedBox(
+                        width: 13.w,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ReplacingGallery(
+                                name: '${currentUser.name}',
+                              );
+                            }));
+                          },
+                          child: card("طلبات البدل", )),
                     ],
                   ),
                 ),
@@ -133,7 +159,7 @@ class _GalleryHomeState extends State<GalleryHome> {
   }
 }
 
-Widget card(String text, IconData icon) {
+Widget card(String text) {
   return Container(
     color: HexColor('#ffffff'),
     child: Card(
@@ -156,10 +182,7 @@ Widget card(String text, IconData icon) {
               shape: BoxShape.circle,
               color: HexColor('#D4E5F3'),
             ),
-            child: Icon(
-              icon,
-              color: Colors.blue,
-            ),
+            child: Image.asset('assets/images/hh.png'),
             alignment: Alignment.center,
           ),
           SizedBox(height: 5),

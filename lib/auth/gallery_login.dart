@@ -15,7 +15,6 @@ import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import 'admin_login.dart';
 
-
 class GalleryLogin extends StatefulWidget {
   static const routeName = '/galleryLogin';
   GalleryLogin({super.key});
@@ -243,8 +242,6 @@ class _GalleryLoginState extends State<GalleryLogin> {
                                             },
                                           ),
                                         ),
-                                       
-                                        
                                       ],
                                     ),
                                   ],

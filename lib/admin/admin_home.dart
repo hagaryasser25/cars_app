@@ -1,6 +1,7 @@
 import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/admin/admin_gallery.dart';
 import 'package:cars_app/admin/buying_list.dart';
+import 'package:cars_app/admin/gallery_profit.dart';
 import 'package:cars_app/admin/replacing_list.dart';
 import 'package:cars_app/admin/selling_list.dart';
 import 'package:cars_app/auth/login_page.dart';
@@ -39,7 +40,7 @@ class _AdminHomeState extends State<AdminHome> {
             body: Column(
               children: [
                 Center(
-                    child: Image.asset("assets/images/car.png", height: 320.h)),
+                    child: Image.asset("assets/images/hh.png", height: 320.h)),
                 Text(
                   "الخدمات",
                   style: TextStyle(
@@ -55,7 +56,9 @@ class _AdminHomeState extends State<AdminHome> {
                           onTap: () {
                             Navigator.pushNamed(context, BuyingList.routeName);
                           },
-                          child: card('طلبات الشراء', Icons.wallet)),
+                          child: card(
+                            'طلبات الشراء',
+                          )),
                       SizedBox(
                         width: 13.w,
                       ),
@@ -63,7 +66,9 @@ class _AdminHomeState extends State<AdminHome> {
                           onTap: () {
                             Navigator.pushNamed(context, SellingList.routeName);
                           },
-                          child: card("طلبات البيع", Icons.sell)),
+                          child: card(
+                            "طلبات البيع",
+                          )),
                       SizedBox(
                         width: 13.w,
                       ),
@@ -72,7 +77,9 @@ class _AdminHomeState extends State<AdminHome> {
                             Navigator.pushNamed(
                                 context, ReplacingList.routeName);
                           },
-                          child: card("طلبات البدل", Icons.car_rental)),
+                          child: card(
+                            "طلبات البدل",
+                          )),
                     ],
                   ),
                 ),
@@ -86,7 +93,20 @@ class _AdminHomeState extends State<AdminHome> {
                             Navigator.pushNamed(
                                 context, AdminGallery.routeName);
                           },
-                          child: card("أضافة معرض", Icons.add)),
+                          child: card(
+                            "أضافة معرض",
+                          )),
+                      SizedBox(
+                        width: 13.w,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, GalleryProfit.routeName);
+                          },
+                          child: card(
+                            "الربح والخسارة",
+                          )),
                       SizedBox(
                         width: 13.w,
                       ),
@@ -118,7 +138,9 @@ class _AdminHomeState extends State<AdminHome> {
                                   );
                                 });
                           },
-                          child: card("تسجيل الخروج", Icons.logout)),
+                          child: card(
+                            "تسجيل الخروج",
+                          )),
                     ],
                   ),
                 ),
@@ -129,7 +151,7 @@ class _AdminHomeState extends State<AdminHome> {
   }
 }
 
-Widget card(String text, IconData icon) {
+Widget card(String text) {
   return Container(
     color: HexColor('#ffffff'),
     child: Card(
@@ -152,10 +174,7 @@ Widget card(String text, IconData icon) {
               shape: BoxShape.circle,
               color: HexColor('#D4E5F3'),
             ),
-            child: Icon(
-              icon,
-              color: Colors.blue,
-            ),
+            child: Image.asset('assets/images/hh.png'),
             alignment: Alignment.center,
           ),
           SizedBox(height: 5),

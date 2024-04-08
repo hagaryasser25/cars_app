@@ -40,7 +40,7 @@ class _UserHomeState extends State<UserHome> {
               children: [
                 Center(
                     child:
-                        Image.asset("assets/images/rent.png", height: 400.h)),
+                        Image.asset("assets/images/hh.png", height: 400.h)),
                 Text(
                   "الخدمات",
                   style: TextStyle(
@@ -57,13 +57,13 @@ class _UserHomeState extends State<UserHome> {
                           onTap: () {
                             Navigator.pushNamed(context, UserGallery.routeName);
                           },
-                          child: card("المعارض", Icons.car_rental)),
+                          child: card("المعارض", )),
                       SizedBox(
                         width: 13.w,
                       ),
                       InkWell(onTap: () {
                         Navigator.pushNamed(context, SellCar.routeName);
-                      }, child: card("طلب بيع", Icons.sell)),
+                      }, child: card("طلب بيع", )),
                       SizedBox(
                         width: 13.w,
                       ),
@@ -95,7 +95,7 @@ class _UserHomeState extends State<UserHome> {
                                   );
                                 });
                           },
-                          child: card("تسجيل الخروج", Icons.logout)),
+                          child: card("تسجيل الخروج", )),
                     ],
                   ),
                 ),
@@ -106,7 +106,7 @@ class _UserHomeState extends State<UserHome> {
   }
 }
 
-Widget card(String text, IconData icon) {
+Widget card(String text) {
   return Container(
     color: HexColor('#ffffff'),
     child: Card(
@@ -129,10 +129,7 @@ Widget card(String text, IconData icon) {
               shape: BoxShape.circle,
               color: HexColor('#D4E5F3'),
             ),
-            child: Icon(
-              icon,
-              color: Colors.blue,
-            ),
+            child:Image.asset('assets/images/hh.png'),
             alignment: Alignment.center,
           ),
           SizedBox(height: 5),

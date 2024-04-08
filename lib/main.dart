@@ -2,6 +2,7 @@ import 'package:cars_app/admin/add_gallery.dart';
 import 'package:cars_app/admin/admin_gallery.dart';
 import 'package:cars_app/admin/admin_home.dart';
 import 'package:cars_app/admin/buying_list.dart';
+import 'package:cars_app/admin/gallery_profit.dart';
 import 'package:cars_app/admin/replacing_list.dart';
 import 'package:cars_app/admin/selling_list.dart';
 import 'package:cars_app/auth/admin_login.dart';
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
           AddGallery.routeName: (ctx) => const AddGallery(),
           GalleryLogin.routeName: (ctx) => GalleryLogin(),
           GalleryHome.routeName: (ctx) => GalleryHome(),
+          GalleryProfit.routeName: (ctx) => GalleryProfit(),
           AddCar.routeName: (ctx) => AddCar(),
           SellCar.routeName: (ctx) => SellCar(),
           UserHome.routeName: (ctx) => UserHome(),
